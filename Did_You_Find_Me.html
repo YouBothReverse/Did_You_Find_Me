@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Did_You_Find_Me</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_img/favicon-16x16.png">
+<link rel="manifest" href="favicon_img/site.webmanifest">
+<link rel="stylesheet" href="style.css">
+<title>Kumbai🤍</title>
 </head>
 <body>
-    
+  <div class="container" id="container" role="main" aria-label="คำใบ้สายรหัส" tabindex="0">
+    <div id="toggleIcon" class="icon" aria-hidden="true">
+    </div>
+    <h1>คำใบ้สายรหัส</h1>
+    <p id="hintText" class="hint">ชอบกินของสีขาวนุ่มฟู<br>หันมาดูก็ฮีลใจ</p>
+    <div class="footer">ลองคิดดูนะว่าสิ่งที่หมายถึงคืออะไร</div>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const icon = document.getElementById('toggleIcon');
+    const hint = document.getElementById('hintText');
+
+    const icons = ['☁️', '🪽', '🤍'];
+    const bgColors = ['#ffffff', '#f0f7ff', '#e0f7fa'];
+
+    let currentIndex = 0;
+    let hintVisible = false;
+
+    function toggleIconAndBg() {
+      if (!hintVisible) {
+        hint.classList.add('visible');
+        hintVisible = true;
+      }
+
+      currentIndex = (currentIndex + 1) % icons.length;
+      icon.textContent = icons[currentIndex];
+      container.style.backgroundColor = bgColors[currentIndex];
+
+      if (icons[currentIndex] !== '☁️') {
+        icon.classList.add('active');
+      } else {
+        icon.classList.remove('active');
+      }
+    }
+
+    container.addEventListener('click', toggleIconAndBg);
+
+    container.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleIconAndBg();
+      }
+    });
+  </script>
 </body>
 </html>
