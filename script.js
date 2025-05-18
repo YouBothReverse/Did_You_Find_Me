@@ -14,19 +14,26 @@ function toggleIconAndBg(){
         hintVisible = true;
     }
 
-    currentIndex = (currentIndex + 1) % icons.length;
-    icon.textContent = icons[currentIndex];
-    container.style.backgroundColor = bgColors[currentIndex];
+    container.classList.add('bounce');
+    setTimeout(() => container.classList.remove('bounce'), 500);
 
-    if(icons[currentIndex] !== '☁️')icon.classList.add('active');
-    else icon.classList.remove('active');
+    icon.classList.add('fade');
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % icons.length;
+        icon.textContent = icons[currentIndex];
+        container.style.backgroundColor = bgColors[currentIndex];
+
+        if (icons[currentIndex] !== '☁️')icon.classList.add('active');
+        else icon.classList.remove('active');
+
+        icon.classList.remove('fade');
+    }, 150);
 }
 
 container.addEventListener('click', toggleIconAndBg);
-
-container.addEventListener('keydown', e =>{
-    if (e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        toggleIconAndBg();
-    }
+container.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleIconAndBg();
+  }
 });
